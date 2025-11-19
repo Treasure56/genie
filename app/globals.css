@@ -1,26 +1,117 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-brand-primary: #b53607;
+  /* --color-brand-primary-light: #ee7525; */
+  /* --color-brand-secondary: #141146; */
+  --font-fugaz: var(--fugaz-font);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+:root  {
+  --background: oklch(16 100% 95%);
+  --foreground: oklch(16 5% 0%);
+  --card: oklch(16 50% 90%);
+  --card-foreground: oklch(16 5% 10%);
+  --popover: oklch(16 100% 95%);
+  --popover-foreground: oklch(16 100% 0%);
+  --primary: oklch(16 92.6% 36.9%);
+  --primary-foreground: oklch(0 0% 100%);
+  --secondary: oklch(16 30% 70%);
+  --secondary-foreground: oklch(0 0% 0%);
+  --muted: oklch(-22 30% 85%);
+  --muted-foreground: oklch(16 5% 35%);
+  --accent: oklch(-22 30% 80%);
+  --accent-foreground: oklch(16 5% 10%);
+  --destructive: oklch(0 100% 30%);
+  --destructive-foreground: oklch(16 5% 90%);
+  --border: oklch(16 30% 50%);
+  --input: oklch(16 30% 18%);
+  --ring: oklch(16 92.6% 36.9%);
+  --radius: 0.5rem;
+}
+.dark  {
+  --background: oklch(16 50% 5%);
+  --foreground: oklch(16 5% 90%);
+  --card: oklch(16 50% 0%);
+  --card-foreground: oklch(16 5% 90%);
+  --popover: oklch(16 50% 5%);
+  --popover-foreground: oklch(16 5% 90%);
+  --primary: oklch(16 92.6% 36.9%);
+  --primary-foreground: oklch(0 0% 100%);
+  --secondary: oklch(16 30% 10%);
+  --secondary-foreground: oklch(0 0% 100%);
+  --muted: oklch(-22 30% 15%);
+  --muted-foreground: oklch(16 5% 60%);
+  --accent: oklch(-22 30% 15%);
+  --accent-foreground: oklch(16 5% 90%);
+  --destructive: oklch(0 100% 30%);
+  --destructive-foreground: oklch(16 5% 90%);
+  --border: oklch(16 30% 18%);
+  --input: oklch(16 30% 18%);
+  --ring: oklch(16 92.6% 36.9%);
+  --radius: 0.5rem;
+}
+
+button, a{
+  cursor: pointer;
+}
+
+@layer utilities{
+  .app-input {
+    @apply bg-neutral-100 w-full border border-gray-300 outline-brand-primary text-gray-800 py-2.5 pe-3 rounded-md read-only:opacity-70 read-only:[&not[type="file"]]:pointer-events-none;
+  }
+
+  .app-select {
+    @apply bg-neutral-100 w-full border border-gray-300 outline-brand-primary text-gray-800 py-2.5 pe-3 rounded-md read-only:opacity-70 read-only:[&not[type="file"]]:pointer-events-none;
+  }
+
+  .app-container {
+    @apply px-5 sm:px-8 md:px-9 lg:px-14 xl:px-20 2xl:px-28;
+  }
+ 
+  .pagination-button {
+    @apply flex items-center justify-center px-4 h-10 ms-0 leading-tight  bg-white border border-e-0 border-gray-100 hover:bg-gray-100 hover:text-gray-700 data-[active="true"]:bg-brand-primary data-[active="true"]:text-white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
