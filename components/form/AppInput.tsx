@@ -163,7 +163,6 @@ export default memo(function AppInput({
               type={type === "password" && eyeOpen ? "text" : type}
               placeholder={placeholder}
               readOnly={readonly}
-              accept={inputProps.accept ?? ".mp3,.wav,.opus,.m4a,.aac,.ogg,audio/*"}
               multiple={inputProps.multiple ?? false}
               value={isFile ? undefined : isControlled ? value : internalValue}
               onChange={isFile ? handleFileChange : handleTextChange}
