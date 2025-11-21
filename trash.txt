@@ -1,0 +1,60 @@
+import { LuClipboardList, LuPlane, LuSparkles } from "react-icons/lu";
+
+export default function HowItWorks() {
+    return (
+        <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                        Your Dream Trip in 3 Easy Steps
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600">
+                        Forget hours of research. Our AI handles the logistics so you can focus on the anticipation.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    {steps.map((step, index) => (
+                        <div
+                            key={index}
+                            className="relative flex flex-col items-center text-center group"
+                        >
+                            <div className="w-20 h-20 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
+                                <step.icon className="w-10 h-10 text-blue-600" />
+                            </div>
+                            <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                                {step.title}
+                            </h3>
+                            <p className="text-slate-600 leading-relaxed">
+                                {step.description}
+                            </p>
+
+                            {/* Connector Line (Desktop only, except last item) */}
+                            {index !== steps.length - 1 && (
+                                <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-linear-to-r from-blue-100 to-transparent -z-10 translate-x-10" />
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+const steps = [
+    {
+        title: "Share Your Preferences",
+        description: "Tell us where you want to go, your budget, and what you love doing. The more details, the better.",
+        icon: LuClipboardList,
+    },
+    {
+        title: "AI Crafts Your Itinerary",
+        description: "Our advanced algorithms build a day-by-day plan, optimizing routes and uncovering hidden gems.",
+        icon: LuSparkles,
+    },
+    {
+        title: "Travel Stress-Free",
+        description: "Get a complete schedule with bookings, maps, and local tips. Just pack your bags and go.",
+        icon: LuPlane,
+    },
+];

@@ -4,7 +4,7 @@ import { LuSparkles } from "react-icons/lu";
 
 export default function Hero() {
   return (
-    <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden h-full ">
+    <section className="relative  py-12 md:py-24 overflow-hidden h-full ">
       <BackgroundRippleEffect />
       <div
         aria-hidden="true"
@@ -19,16 +19,16 @@ export default function Hero() {
 
       <div className="relative z-10 flex flex-col items-center max-w-[900px] mx-auto text-center gap-6 px-4">
         <h1 className="text-4xl md:text-6xl xl:text-7xl font-semibold flex items-center justify-center gap-3 text-slate-800">
-          <LuSparkles className="text-4xl md:text-5xl animate-pulse text-blue-950" />
+          <LuSparkles className="text-4xl md:text-5xl animate-pulse text-slate-950" />
           AI Powered Trip Planner
         </h1>
-        <p className="text-base text-gray-700">Experience the world, don&apos;t just visit it. We swap generic tourist traps for personalized recommendations, turning a list of destinations into a cohesive journey designed specifically for your taste.</p>
+        <p className="text-base text-slate-700">Experience the world, don&apos;t just visit it. We swap generic tourist traps for personalized recommendations, turning a list of destinations into a cohesive journey designed specifically for your taste.</p>
         <HeroForm />
       </div>
 
-      <div className="absolute top-0 left-0 w-full h-full ">
+      {/* <div className="absolute top-0 left-0 w-full h-full ">
         <LuSparkles className="absolute bottom-5 right-20 text-3xl md:text-4xl animate-pulse size-24 " />
-      </div>
+      </div> */}
     </section>
   );
 }
