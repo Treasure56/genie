@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-brand-primary: #b53607;
+  --color-brand-primary: #2E1065;
   /* --color-brand-primary-light: #ee7525; */
   /* --color-brand-secondary: #141146; */
   --font-fugaz: var(--fugaz-font);
@@ -136,7 +136,7 @@ a {
   }
 
   .btn-primary {
-    @apply bg-slate-800 border-slate-800 text-white hover:bg-slate-950 text-sm font-medium inline-flex gap-1;
+    @apply bg-brand-primary border-purple-800 text-white hover:bg-purple-950 text-sm font-medium inline-flex gap-1;
   }
 
   .pagination-button {

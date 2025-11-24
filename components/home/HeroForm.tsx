@@ -6,7 +6,7 @@ import FormButton from "../form/FormButton";
 export default function HeroForm() {
   return (
     <div className="max-w-[700px] mx-auto flex justify-center mt-10 p-6 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow">
-      <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <form className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
         {formFields.map((field) => (
           <AppInput key={field.name} {...field} />
         ))}

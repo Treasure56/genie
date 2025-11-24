@@ -11,7 +11,7 @@ export default function Hero() {
         className="
     pointer-events-none absolute left-1/2 -translate-x-1/2 -top-32
     w-[500px] h-[500px] rounded-full
-    bg-linear-to-b from-slate-500 via-pink-200 to-yellow-300
+    bg-linear-to-b from-slate-500 via-pink-300 to-yellow-300
     opacity-30 blur-3xl
     animate-[pulse_6s_ease-in-out_infinite]
   "
