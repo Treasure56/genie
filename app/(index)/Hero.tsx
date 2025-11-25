@@ -4,31 +4,28 @@ import { LuSparkles } from "react-icons/lu";
 
 export default function Hero() {
   return (
-    <section className="relative  py-12 md:py-24 overflow-hidden h-full ">
+    <section className="relative  py-30 md:py-40 overflow-hidden h-full ">
       <BackgroundRippleEffect />
       <div
         aria-hidden="true"
         className="
     pointer-events-none absolute left-1/2 -translate-x-1/2 -top-32
     w-[500px] h-[500px] rounded-full
-    bg-linear-to-b from-slate-500 via-pink-300 to-yellow-300
+    bg-linear-to-b from-purple-950 via-pink-300 to-yellow-300
     opacity-30 blur-3xl
     animate-[pulse_6s_ease-in-out_infinite]
   "
       />
 
       <div className="relative z-10 flex flex-col items-center max-w-[900px] mx-auto text-center gap-6 px-4">
-        <h1 className="text-4xl md:text-6xl xl:text-7xl font-semibold flex items-center justify-center gap-3 text-slate-800">
-          <LuSparkles className="text-4xl md:text-5xl animate-pulse text-slate-950" />
-          AI Powered Trip Planner
+        <h1 className="text-3xl md:text-6xl font-semibold flex items-center justify-center  text-slate-800 leading-none">
+          <LuSparkles className="text-3xl md:text-6xl animate-pulse text-purple-950 leading-none text-pretty" />
+          Intelligent Planning for Inspired Journeys
         </h1>
-        <p className="text-base text-slate-700">Experience the world, don&apos;t just visit it. We swap generic tourist traps for personalized recommendations, turning a list of destinations into a cohesive journey designed specifically for your taste.</p>
+
+        <p className="text-base text-slate-700 max-w-120 mx-auto text-pretty text-center">No more generic travel guides. Enjoy recommendations crafted from data, taste and your unique travel identity.</p>
         <HeroForm />
       </div>
-
-      {/* <div className="absolute top-0 left-0 w-full h-full ">
-        <LuSparkles className="absolute bottom-5 right-20 text-3xl md:text-4xl animate-pulse size-24 " />
-      </div> */}
     </section>
   );
 }

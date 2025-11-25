@@ -7,19 +7,19 @@ export default function Cta() {
             <div className="relative overflow-hidden rounded-3xl bg-brand-primary px-8 py-20 md:px-16 md:py-24 shadow-2xl">
                 {/* Background Pattern Text */}
                 <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 select-none pointer-events-none z-0">
-                    <h1 className="text-[15rem] leading-none font-black text-white/5 tracking-tighter whitespace-nowrap">
+                    <h1 className="text-[15rem] leading-none text-pretty font-black text-white/5 tracking-tighter whitespace-nowrap">
                         GENIE✨
                     </h1>
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-start gap-8 max-w-2xl">
-                    <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+                    <h2 className="text-4xl md:text-6xl text-pretty font-bold text-white tracking-tight leading-tight">
                         Ready to plan your next <br />
                         <span className="text-purple-200">dream adventure?</span>
                     </h2>
 
-                    <p className="text-lg text-purple-100/90 leading-relaxed max-w-xl">
+                    <p className="text-lg text-pretty text-purple-100/90 leading-relaxed max-w-xl">
                         Let&apos;s create a trip that&apos;s tailored to your interests and budget. Experience the magic of AI-powered travel planning.
                     </p>
 

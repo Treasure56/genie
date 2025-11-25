@@ -1,10 +1,9 @@
 "use client"
 
-import Image from "next/image";
-import { LuBadgeDollarSign, LuBot, LuMapPinCheck, LuSlidersHorizontal, LuTarget } from "react-icons/lu";
-import FeaturesTile from "./FeaturesTile";
-import FeaturesImage from "./FeaturesImage";
 import { useState } from "react";
+import { LuBadgeDollarSign, LuBot, LuMapPinCheck, LuSlidersHorizontal, LuTarget } from "react-icons/lu";
+import FeaturesImage from "./FeaturesImage";
+import FeaturesTile from "./FeaturesTile";
 
 export default function Features() {
     const [activeIndex, setActiveIndex] = useState(0);

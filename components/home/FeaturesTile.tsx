@@ -17,8 +17,8 @@ export default function FeaturesTile({ title, description, icon, isActive = fals
                 {icon}
             </div>
             <div className="flex flex-col">
-                <p className="font-semibold text-xl text-slate-800">{title}</p>
-                <p className="text-slate-600 text-sm">{description}</p>
+                <p className="font-semibold text-xl text-slate-800 text-pretty">{title}</p>
+                <p className="text-slate-600 text-sm text-pretty">{description}</p>
             </div>
 
         </div >
