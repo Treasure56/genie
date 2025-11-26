@@ -7,11 +7,6 @@ interface PlaceCardProps {
 }
 
 export default function PlaceCard({ place }: PlaceCardProps) {
-    // const name = place?.name || "Grand Hyatt Tokyo";
-    // const rating = place?.rating || 4.5;
-    // const address = place?.vicinity || "6-10-3 Roppongi, Minato-ku, Tokyo";
-    // const priceLevel = place?.price_level || 3;
-    // const imageSrc = "/images/itenary.jpg";
 
     return (
         <div className="group bg-white rounded-2xl p-3  duration-300 border border-gray-100 flex gap-4">
