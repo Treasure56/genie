@@ -15,17 +15,7 @@ import {
   InfoWindow,
   MarkerClusterer,
 } from "@react-google-maps/api";
-
-export type PlaceResult = {
-  place_id: string;
-  name: string;
-  geometry: { location: { lat: number; lng: number } };
-  vicinity?: string;
-  rating?: number;
-  user_ratings_total?: number;
-  price_level?: number;
-  photos?: any[];
-};
+import { PlaceResult } from "@/types/placeResult";
 
 const containerStyle = { width: "100%", height: "100%" };
 
@@ -68,7 +58,7 @@ export default function TripMap({
 
     service.nearbySearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        const formatted = results.map((r) => ({
+        const formatted: PlaceResult[] = results.map((r) => ({
           place_id: r.place_id!,
           name: r.name!,
           geometry: {
@@ -81,7 +71,12 @@ export default function TripMap({
           rating: r.rating,
           user_ratings_total: r.user_ratings_total,
           price_level: r.price_level,
-          photos: r.photos,
+          photos: r.photos?.map((photo) => ({
+            height: photo.height,
+            width: photo.width,
+            html_attributions: photo.html_attributions,
+            photo_reference: photo.getUrl({ maxWidth: 400 }),
+          })),
         }));
         setPlaces(formatted);
       }
@@ -109,20 +104,22 @@ export default function TripMap({
       <Marker position={center} title="Your location" />
 
       <MarkerClusterer>
-        {(clusterer) =>
-          places.map((place) => (
-            <Marker
-              key={place.place_id}
-              position={{
-                lat: place.geometry.location.lat,
-                lng: place.geometry.location.lng,
-              }}
-              clusterer={clusterer}
-              onClick={() => setSelectedPlace(place)}
-              title={place.name}
-            />
-          ))
-        }
+        {(clusterer) => (
+          <>
+            {places.map((place) => (
+              <Marker
+                key={place.place_id}
+                position={{
+                  lat: place.geometry.location.lat,
+                  lng: place.geometry.location.lng,
+                }}
+                clusterer={clusterer}
+                onClick={() => setSelectedPlace(place)}
+                title={place.name}
+              />
+            ))}
+          </>
+        )}
       </MarkerClusterer>
 
       {selectedPlace && (
