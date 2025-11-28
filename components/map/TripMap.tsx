@@ -147,19 +147,14 @@ export default function TripMap({
 
 const mapOptions: google.maps.MapOptions = {
   styles: [
-    // { elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
-    // { elementType: "labels.text.fill", stylers: [{ color: "#616161" }] },
-    // { elementType: "labels.text.stroke", stylers: [{ color: "#f5f5f5" }] },
-    // {
-    //   featureType: "road",
-    //   elementType: "geometry",
-    //   stylers: [{ color: "#38414e" }],
-    // },
-    // {
-    //   featureType: "poi",
-    //   elementType: "labels.text.fill",
-    //   stylers: [{ color: "#6f9ba5" }],
-    // },
+    // { featureType: "poi", stylers: [{ visibility: "off" }] },
+    // { featureType: "transit", stylers: [{ visibility: "off" }] },
+    {
+      featureType: "road",
+      elementType: "labels",
+      stylers: [{ visibility: "off" }],
+    },
+    // { featureType: "administrative", stylers: [{ visibility: "off" }] },
   ],
   disableDefaultUI: true, // optional: hide default buttons
   zoomControl: true, // optional: enable only zoom control

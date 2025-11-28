@@ -14,5 +14,55 @@ export type AppPageError = {
   reset: () => void
 }
 
+
+
+export type ServiceResponse<T = unknown, E = unknown> = [T, null] | [null, E];
+
+export type Paginated<T = unknown> = {
+  items: T[];
+  hasPreviousPage: boolean;
+  previousPages: number;
+  hasNextPage: boolean;
+  nextPages: number;
+  totalPages: number;
+  totalDocuments: number;
+  currentPage: number;
+};
+
+export type BaseQueryParams = {
+  /** Page number
+   * @default 1
+   */
+  page?: number | string;
+  /** Search query
+   * @default ""
+   */
+  q?: string;
+  /** Limit
+   * @default 20
+   */
+  limit?: number | string;
+}
+
+export type ApiResponse<T = unknown> = {
+  /** Status code
+   * @type number
+   */
+  status: number;
+  /** Message */
+  message: string;
+  /** Response data */
+  data: T;
+  /** Field errors (error in form fields, if any)
+   *  where key is the field name
+   * @example {
+   *   "email": ["Email is required"],
+   *   "password": ["Password is required"]
+   * }
+   * @type Record<string, string[]>
+   */
+  fieldErrors?: Record<string, string[]>;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ANY = any;

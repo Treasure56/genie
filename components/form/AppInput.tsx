@@ -31,6 +31,8 @@ export type AppInputProps = {
   onChange?: (value: string) => void;
   onErrorChange?: (hasError: boolean) => void;
   inputProps?: HTMLAttributes<HTMLInputElement> & ComponentProps<"input">;
+  endIcon?: React.ReactNode;
+  onEndIconClick?: () => void;
 };
 
 export default memo(function AppInput({
@@ -48,24 +50,18 @@ export default memo(function AppInput({
   rows,
   error: fieldError,
   inputProps = {},
+  endIcon,
+  onEndIconClick,
 }: AppInputProps) {
   const isFile = type === "file";
-  const isControlled = false // value !== undefined;
+  const isControlled = value !== undefined;
 
-  const [internalValue, setInternalValue] = useState<string>("");
+  const [internalValue, setInternalValue] = useState<string>(value ?? "");
   const [selectedFile, setSelectedFile] = useState<File | undefined>();
   const [eyeOpen, setEyeOpen] = useState(false);
 
   const inputId = useMemo(() => `${title ?? name}-input`, [title, name]);
 
-  // Sync external value to internal state if controlled
-  useEffect(() => {
-    if (!isFile && !isControlled) {
-      setInternalValue(value ?? "");
-    }
-  }, [value, isFile, isControlled]);
-
-  // Memory cleanup for image preview
   useEffect(() => {
     let url: string | null = null;
     if (selectedFile) {
@@ -102,7 +98,10 @@ export default memo(function AppInput({
   return (
     <div className={clsx({ hidden })}>
       {title && (
-        <label htmlFor={inputId} className="inline-block pb-1 text-black-300 text-label">
+        <label
+          htmlFor={inputId}
+          className="inline-block pb-1 text-black-300 text-label"
+        >
           {title}
         </label>
       )}
@@ -139,9 +138,23 @@ export default memo(function AppInput({
             </button>
           )}
 
+          {endIcon && (
+            <button
+              type="button"
+              onClick={onEndIconClick}
+              className={clsx(
+                "absolute inline-block right-3 text-gray-500 hover:text-gray-700",
+                textarea ? "top-4" : "top-1/2 -translate-y-1/2",
+                !onEndIconClick && "pointer-events-none"
+              )}
+            >
+              {endIcon}
+            </button>
+          )}
+
           {textarea ? (
             <textarea
-              {...inputProps as ANY}
+              {...(inputProps as ANY)}
               id={inputId}
               name={name}
               readOnly={readonly}
@@ -182,4 +195,3 @@ export default memo(function AppInput({
     </div>
   );
 });
-
