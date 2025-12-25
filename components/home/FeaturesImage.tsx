@@ -1,54 +1,72 @@
-"use client"
+"use client";
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import { useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+type FeaturesImageProps = {
+  images: string[];
+  activeIndex: number;
+};
 
-export default function FeaturesImage({ src, alt, index, setIndex }: {
-    src: string, alt: string, index: number,
-    setIndex: (index: number) => void
-}) {
-    const ref = useRef<HTMLDivElement>(null);
+export default function FeaturesImage({
+  images,
+  activeIndex,
+}: FeaturesImageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (ref.current) {
-            const scrollTriggerInstance = ScrollTrigger.create({
-                trigger: ref.current,
-                start: "top center",
-                end: "bottom center",
-                onEnter: () => { // When scrolling down and entering the trigger area
-                    setIndex(index);
-                },
-                onEnterBack: () => { // When scrolling up and re-entering the trigger area
-                    setIndex(index);
-                },
-                onLeaveBack: () => { // When scrolling up and leaving the trigger area
-                    // Reduce the index, ensuring it doesn't go below 0
-                    setIndex(Math.max(0, index - 1));
-                },
-                // markers: true,
-            });
+  useGSAP(
+    () => {
+      // Animate images based on activeIndex
+      images.forEach((_, index) => {
+        const isActive = index === activeIndex;
+        const zIndex = isActive ? 10 : 0;
+        const opacity = isActive ? 1 : 0;
+        const scale = isActive ? 1 : 0.9;
+        const rotate = isActive ? 0 : index % 2 === 0 ? -5 : 5; // Slight rotation for deck effect
 
-            return () => {
-                if (scrollTriggerInstance) {
-                    scrollTriggerInstance.kill();
-                }
-            };
-        }
-    }, [index, setIndex]);
+        gsap.to(`.image-card-${index}`, {
+          opacity: opacity,
+          scale: scale,
+          zIndex: zIndex,
+          rotation: rotate,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      });
+    },
+    { dependencies: [activeIndex], scope: containerRef }
+  );
 
-    return (
-        <div ref={ref} className="w-full flex flex-col bg-purple-50/50 backdrop-blur-xl rounded-2xl border h-full border-white/50 py-6 px-6 md:px-12 aspect-8/5 transition-all duration-500 sticky! top-24">
-            <Image
-                src={src}
-                alt={alt}
-                width={700}
-                height={700}
-                className="object-cover rounded-xl w-full h-full shadow-lg"
-            />
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full aspect-square max-w-[500px] mx-auto perspective-1000"
+    >
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={cn(
+            `image-card-${index} absolute inset-0 w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white/50 bg-white origin-bottom`,
+            "will-change-transform will-change-opacity"
+          )}
+          style={{
+            zIndex: index === 0 ? 1 : 0, // Initial stacking
+          }}
+        >
+          <Image
+            src={src}
+            alt={`Feature ${index + 1}`}
+            fill
+            className="object-cover"
+            priority={index === 0}
+          />
+          {/* Overlay for depth */}
+          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
         </div>
-    );
+      ))}
+    </div>
+  );
 }

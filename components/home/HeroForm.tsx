@@ -1,4 +1,6 @@
 "use client";
+import { getUserLocation } from "@/action/geolocation";
+import { useState, useTransition } from "react";
 import {
   LuCalendar,
   LuLoader,
@@ -8,6 +10,7 @@ import {
   LuWallet,
 } from "react-icons/lu";
 import AppInput, { AppInputProps } from "../form/AppInput";
+import FormButton from "../form/FormButton";
 import {
   MultiSelect,
   MultiSelectContent,
@@ -16,60 +19,68 @@ import {
   MultiSelectTrigger,
   MultiSelectValue,
 } from "../ui/multi-select";
-import FormButton from "../form/FormButton";
-import { $PlacesSearch } from "@/action/PlacesSearch";
-import { useAppActionState } from "@/hooks/useActionState";
-import { FormMessage } from "../form/FormMessage";
-import { useState, useTransition } from "react";
-import { $getCurrentLocation } from "@/action/getCurrentLocation";
 
+import { parseAsInteger, parseAsString, useQueryState } from "nuqs";
+import { useAppActionState } from "@/hooks/useActionState";
+import { $placesSearch } from "@/action/PlacesSearch";
 export default function HeroForm() {
-  const { action, state } = useAppActionState($PlacesSearch);
   const [locationName, setLocationName] = useState("");
   const [isPending, startTransition] = useTransition();
+  const { action, state } = useAppActionState($placesSearch);
 
+  const [destination, setDestination] = useQueryState(
+    "destination",
+    parseAsString.withDefault("") // reuseable address
+  );
+
+  const [lat, setLat] = useQueryState("lat", {
+    defaultValue: undefined as number | undefined,
+    parse: (v) => (v == null || v === "" ? undefined : Number(v)),
+    serialize: (v) => (v == null ? "" : String(v)),
+  });
+
+  const [lng, setLng] = useQueryState("lng", {
+    defaultValue: undefined as number | undefined,
+    parse: (v) => (v == null || v === "" ? undefined : Number(v)),
+    serialize: (v) => (v == null ? "" : String(v)),
+  });
+
+  const [travelDates, setTravelDates] = useQueryState(
+    "travelDates",
+    parseAsString.withDefault("")
+  );
+  const [budget, setBudget] = useQueryState(
+    "budget",
+    parseAsString.withDefault("")
+  );
+  const [tripDuration, setTripDuration] = useQueryState(
+    "tripDuration",
+    parseAsInteger.withDefault(1)
+  );
+
+  // interests as comma list in URL
+  const [interestsCsv, setInterestsCsv] = useQueryState(
+    "interests",
+    parseAsString.withDefault("")
+  );
+
+  // helper to read/write array
+  const interestsArray = (interestsCsv || "").split(",").filter(Boolean);
+
+  // handle "Use Current Location" button
   const handleCurrentLocation = () => {
     startTransition(async () => {
-      if (navigator.geolocation) {
-        const permissionStatus = await navigator.permissions.query({
-          name: "geolocation",
-        });
-
-        if (
-          permissionStatus.state === "granted" ||
-          permissionStatus.state === "prompt"
-        ) {
-          navigator.geolocation.getCurrentPosition(
-            async (position) => {
-              const { address, error } = await $getCurrentLocation(
-                position.coords.latitude,
-                position.coords.longitude
-              );
-              if (address) {
-                setLocationName(address);
-              } else if (error) {
-                console.error(error);
-              }
-            },
-            (error) => {
-              console.error("Geolocation failed", error);
-            }
-          );
-        } else if (permissionStatus.state === "denied") {
-          console.error("Geolocation permission denied.");
-        }
-      } else {
-        console.error("Browser doesn't support Geolocation");
+      try {
+        const address = await getUserLocation();
+        setLocationName(address);
+      } catch (error) {
+        console.error(error);
       }
     });
   };
 
   return (
-    <form
-      action={action}
-      className="max-w-[700px] mx-auto flex flex-col justify-center mt-10 p-6 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow"
-    >
-      <FormMessage res={state} />
+    <form className="max-w-[700px] mx-auto flex flex-col gap-4 justify-center mt-10 p-6 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
         <AppInput
           name="destination"
@@ -102,6 +113,7 @@ export default function HeroForm() {
             </MultiSelectGroup>
           </MultiSelectContent>
         </MultiSelect>
+        <input type="hidden" name="interests" value={interests.join(",")} />
         <FormButton className="btn btn-primary rounded-md">
           Explore Options
         </FormButton>

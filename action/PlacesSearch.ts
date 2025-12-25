@@ -12,7 +12,7 @@ const schema = z.object({
   interests: z.array(z.string()).min(1, "Interests are required"),
 });
 
-export async function $PlacesSearch(
+export async function $placesSearch(
   _: ActionResponse,
   formData: FormData
 ): Promise<ActionResponse> {
@@ -40,7 +40,7 @@ export async function $PlacesSearch(
     }
 
     const data = await res.json();
-    console.log({ data });
+    console.log({ response: data });
 
     return {
       success: "Places search successful",

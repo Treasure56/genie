@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Nav";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
+const bricolageGrotesque = Bricolage_Grotesque({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
+// const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Genie ✨",
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={` ${roboto.className} antialiased scroll-smooth`}
+        className={` ${bricolageGrotesque.className} antialiased scroll-smooth`}
       >
         <Navbar />
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
+
+        <SpeedInsights />
       </body>
     </html>
   );
