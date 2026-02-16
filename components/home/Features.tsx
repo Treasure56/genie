@@ -1,123 +1,61 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
-import {
-  LuBadgeDollarSign,
-  LuBot,
-  LuMapPinCheck,
-  LuSlidersHorizontal,
-  LuTarget,
-} from "react-icons/lu";
-import FeaturesImage from "./FeaturesImage";
-import FeaturesTile from "./FeaturesTile";
-
-gsap.registerPlugin(ScrollTrigger);
+import { LuTarget } from "react-icons/lu";
+import { FeatureSteps } from "../ui/feature-section";
 
 export default function Features() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const totalFeatures = features.length;
-
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=3000", // Pin for a significant distance to allow comfortable reading
-        pin: true,
-        scrub: true,
-        onUpdate: (self) => {
-          // Calculate active index based on scroll progress
-          const index = Math.floor(self.progress * totalFeatures);
-          const clampedIndex = Math.min(index, totalFeatures - 1);
-          setActiveIndex(clampedIndex);
-        },
-      });
-    },
-    { scope: containerRef }
-  );
-
   return (
-    <section className="relative min-h-screen">
-      <div
-        ref={containerRef}
-        className="app-container py-24 relative h-screen flex flex-col justify-center"
-      >
-        <div className="flex flex-col gap-4 mb-12 text-center items-center shrink-0">
-          <p className="text-brand-primary bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 w-fit inline-flex gap-2 items-center text-sm font-semibold">
-            <LuTarget className="text-brand-primary" /> Personalized Planning
+    <section className="relative py-24 bg-white dark:bg-slate-950">
+      <div className="app-container flex flex-col gap-12">
+        <div className="flex flex-col gap-4 text-center items-center shrink-0">
+          <p className="text-brand-primary dark:text-purple-300 bg-purple-50 dark:bg-purple-900/30 border border-purple-100 dark:border-purple-800 rounded-full px-4 py-1.5 w-fit inline-flex gap-2 items-center text-sm font-semibold">
+            <LuTarget className="text-brand-primary dark:text-purple-300" />{" "}
+            Personalized Planning
           </p>
-          <h2 className="heading leading-tight font-bold bg-clip-text text-transparent bg-linear-to-r from-slate-900 via-slate-800 to-slate-600 max-w-2xl">
+          <h2 className="heading leading-tight font-bold bg-clip-text text-transparent bg-linear-to-r from-slate-900 via-slate-800 to-slate-600 dark:bg-none dark:text-slate-100 max-w-2xl">
             Clarity for Every Step of Your Journey
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center justify-center flex-1">
-          {/* Left Column: Image Deck */}
-          <div className="hidden lg:flex h-full max-h-[500px] items-center justify-center">
-            <FeaturesImage
-              images={features.map((f) => f.image)}
-              activeIndex={activeIndex}
-            />
-          </div>
-
-          {/* Right Column: Text List */}
-          <div className="flex flex-col items-center gap-6 justify-center p-4">
-            {features.map((feature, i) => (
-              <div
-                key={i}
-                className="flex items-center w-full transition-all duration-300"
-                style={{
-                  opacity: i === activeIndex ? 1 : 0.3, // Fade out inactive items for focus
-                  transform: i === activeIndex ? "scale(1.05)" : "scale(1)",
-                }}
-              >
-                <FeaturesTile
-                  title={feature.title}
-                  description={feature.description}
-                  icon={feature.icon}
-                  isActive={i === activeIndex}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <FeatureSteps
+          features={stepsFeatures}
+          title=""
+          autoPlayInterval={4000}
+          imageHeight="h-[500px]"
+          className="p-0 md:p-0"
+        />
       </div>
     </section>
   );
 }
 
-const features = [
+const stepsFeatures = [
   {
+    step: "Personalization",
     title: "AI-Generated Itineraries",
-    description:
+    content:
       "Receive personalized recommendations for every aspect, aligned with your preferences and distinct travel style.",
-    icon: <LuBot size={24} />,
     image: "/images/itenary.jpg",
   },
   {
+    step: "Usage",
     title: "Interactive Map View",
-    description:
+    content:
       "Explore your entire trip on an easy-to-use map. See recommended places, routes, and nearby attractions in real time.",
-    icon: <LuMapPinCheck size={24} />,
     image: "/images/map-view.jpg",
   },
   {
+    step: "Budgeting",
     title: "Budget-Aware Recommendations",
-    description:
+    content:
       "Get suggestions that match your spending plan. The system recommends hotels, activities, and restaurants that fit your budget.",
-    icon: <LuBadgeDollarSign size={24} />,
     image: "/images/itenary.jpg",
   },
   {
+    step: "Customization",
     title: "Travel Style Personalization",
-    description:
+    content:
       "Receive recommendations tailored to your travel vibe—whether you prefer adventure, relaxation, nightlife, or culture.",
-    icon: <LuSlidersHorizontal size={24} />,
     image: "/images/map-view.jpg",
   },
 ];

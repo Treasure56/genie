@@ -1,3 +1,3 @@
 git add .
-git commit -m "improvd features animation and added theme toggle"
+git commit -m "Enhenced the ui and implemented dark theme feature"
 git push origin main

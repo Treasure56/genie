@@ -3,7 +3,6 @@ import { paths } from "@/utils/paths";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Activity } from "react";
-import ThemeToggle from "../ui/ThemeToggle";
 
 export default function Navbar() {
   const pathName = usePathname();
@@ -17,11 +16,10 @@ export default function Navbar() {
           Genie✨
         </Link>
         <div className="flex items-center gap-4">
-          <ThemeToggle />
           <Activity mode={pathName !== "/" ? "hidden" : "visible"}>
             <Link
               href={paths.search}
-              className="bg-brand-primary text-white hover:bg-brand-primary/80 px-6 py-2.5 rounded-full font-medium text-sm transition-all"
+              className="bg-brand-primary text-white hover:bg-brand-primary/80 px-6 py-2.5 rounded-md font-medium text-sm transition-all"
             >
               Get Started
             </Link>

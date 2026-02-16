@@ -24,7 +24,7 @@ export const BackgroundRippleEffect = ({
       className={cn(
         "absolute inset-0 h-full w-full",
         "[--cell-border-color:var(--color-gray-50)] [--cell-fill-color:var(--color-slate-100)] [--cell-shadow-color:var(--color-gray-500)]",
-        // "dark:[--cell-border-color:var(--color-slate-100)] dark:[--cell-fill-color:var(--color-slate-600)] dark:[--cell-shadow-color:var(--color-neutral-800)]",
+        "dark:[--cell-border-color:var(--color-slate-800)] dark:[--cell-fill-color:var(--color-slate-950)] dark:[--cell-shadow-color:var(--color-slate-900)]",
       )}
     >
       <div className="relative h-auto w-auto overflow-hidden">
@@ -74,7 +74,7 @@ const DivGrid = ({
   borderColor = "#eee",
   fillColor = "rgba(14,165,233,1)",
   clickedCell = null,
-  onCellClick = () => { },
+  onCellClick = () => {},
   interactive = true,
 }: DivGridProps) => {
   const cells = useMemo(
@@ -104,9 +104,9 @@ const DivGrid = ({
 
         const style: CellStyle = clickedCell
           ? {
-            "--delay": `${delay}ms`,
-            "--duration": `${duration}ms`,
-          }
+              "--delay": `${delay}ms`,
+              "--duration": `${duration}ms`,
+            }
           : {};
 
         return (

@@ -50,48 +50,48 @@
 
 
 :root {
-  --background: oklch(16 100% 95%);
-  --foreground: oklch(16 5% 0%);
-  --card: oklch(16 50% 90%);
-  --card-foreground: oklch(16 5% 10%);
-  --popover: oklch(16 100% 95%);
-  --popover-foreground: oklch(16 100% 0%);
-  --primary: oklch(16 92.6% 36.9%);
-  --primary-foreground: oklch(0 0% 100%);
-  --secondary: oklch(16 30% 70%);
-  --secondary-foreground: oklch(0 0% 0%);
-  --muted: oklch(-22 30% 85%);
-  --muted-foreground: oklch(16 5% 35%);
-  --accent: oklch(-22 30% 80%);
-  --accent-foreground: oklch(16 5% 10%);
-  --destructive: oklch(0 100% 30%);
-  --destructive-foreground: oklch(16 5% 90%);
-  --border: oklch(16 30% 50%);
-  --input: oklch(16 30% 18%);
-  --ring: oklch(16 92.6% 36.9%);
+  --background: oklch(100% 0 0);
+  --foreground: oklch(20% 0.02 260);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(20% 0.02 260);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(20% 0.02 260);
+  --primary: oklch(35% 0.15 270); /* Deep Purple to match Genie brand */
+  --primary-foreground: oklch(98% 0 0);
+  --secondary: oklch(96% 0.01 260);
+  --secondary-foreground: oklch(20% 0.02 260);
+  --muted: oklch(96% 0.01 260);
+  --muted-foreground: oklch(50% 0.02 260);
+  --accent: oklch(94% 0.02 260);
+  --accent-foreground: oklch(20% 0.02 260);
+  --destructive: oklch(55% 0.2 20);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(90% 0.01 260);
+  --input: oklch(90% 0.01 260);
+  --ring: oklch(35% 0.15 270);
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: oklch(14% 0.04 280); /* Deep purplish dark */
-  --foreground: oklch(98% 0.01 280);
-  --card: oklch(18% 0.04 280);
-  --card-foreground: oklch(98% 0.01 280);
-  --popover: oklch(14% 0.04 280);
-  --popover-foreground: oklch(98% 0.01 280);
-  --primary: oklch(65% 0.25 280); /* Vibrant purple */
-  --primary-foreground: oklch(98% 0 0);
-  --secondary: oklch(25% 0.06 280);
-  --secondary-foreground: oklch(98% 0.01 280);
-  --muted: oklch(25% 0.04 280);
-  --muted-foreground: oklch(70% 0.02 280);
-  --accent: oklch(25% 0.06 280);
-  --accent-foreground: oklch(98% 0.01 280);
-  --destructive: oklch(50% 0.2 25);
-  --destructive-foreground: oklch(98% 0 0);
-  --border: oklch(25% 0.06 280);
-  --input: oklch(25% 0.06 280);
-  --ring: oklch(65% 0.25 280);
+  --background: oklch(0.129 0.042 264.695); /* Slate 950 */
+  --foreground: oklch(0.985 0.009 264.695); /* Slate 50 */
+  --card: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.985 0.009 264.695);
+  --popover: oklch(0.129 0.042 264.695);
+  --popover-foreground: oklch(0.985 0.009 264.695);
+  --primary: oklch(0.7 0.15 270); /* Bright Purple for Dark Mode */
+  --primary-foreground: oklch(0.129 0.042 264.695);
+  --secondary: oklch(0.2 0.04 260);
+  --secondary-foreground: oklch(0.985 0.009 264.695);
+  --muted: oklch(0.2 0.04 260);
+  --muted-foreground: oklch(0.6 0.02 260);
+  --accent: oklch(0.2 0.04 260);
+  --accent-foreground: oklch(0.985 0.009 264.695);
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.985 0.009 264.695);
+  --border: oklch(0.2 0.04 260);
+  --input: oklch(0.2 0.04 260);
+  --ring: oklch(0.7 0.15 270);
   --radius: 0.5rem;
 }
 
@@ -121,11 +121,11 @@ a {
 
 @layer utilities {
   .app-input {
-    @apply bg-neutral-100 w-full border border-gray-300 outline-slate-900 text-gray-800 py-2.5 pe-3 rounded-md read-only:opacity-70;
+    @apply bg-neutral-100 dark:bg-slate-950 w-full border border-gray-300 dark:border-slate-800 outline-slate-900 dark:outline-slate-200 text-gray-800 dark:text-slate-100 py-2.5 pe-3 rounded-md read-only:opacity-70;
   }
 
   .app-select {
-    @apply bg-neutral-100 w-full border border-gray-300 outline-slate-800 text-gray-800 py-2.5 pe-3 rounded-md read-only:opacity-70;
+    @apply bg-neutral-100 dark:bg-slate-950 w-full border border-gray-300 dark:border-slate-800 outline-slate-800 dark:outline-slate-200 text-gray-800 dark:text-slate-100 py-2.5 pe-3 rounded-md read-only:opacity-70;
   }
 
   .app-container {
