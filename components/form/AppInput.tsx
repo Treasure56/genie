@@ -79,7 +79,7 @@ export default memo(function AppInput({
       if (!isControlled) setInternalValue(newVal);
       onChange?.(newVal);
     },
-    [inputProps, onChange, isControlled]
+    [inputProps, onChange, isControlled],
   );
 
   const handleFileChange = useCallback(
@@ -88,7 +88,7 @@ export default memo(function AppInput({
       const file = e.target.files?.[0];
       setSelectedFile(file);
     },
-    [inputProps]
+    [inputProps],
   );
 
   const hasFieldError = fieldError?.[0] ?? null;
@@ -118,7 +118,7 @@ export default memo(function AppInput({
             <span
               className={clsx(
                 "absolute inline-block left-3 opacity-60",
-                textarea ? "top-4" : "top-1/2 -translate-y-1/2"
+                textarea ? "top-4" : "top-1/2 -translate-y-1/2",
               )}
             >
               {icon}
@@ -131,7 +131,7 @@ export default memo(function AppInput({
               onClick={() => setEyeOpen(!eyeOpen)}
               className={clsx(
                 "absolute inline-block right-3",
-                textarea ? "top-4" : "top-1/2 -translate-y-1/2"
+                textarea ? "top-4" : "top-1/2 -translate-y-1/2",
               )}
             >
               {eyeOpen ? <FaRegEye /> : <FaRegEyeSlash />}
@@ -145,7 +145,7 @@ export default memo(function AppInput({
               className={clsx(
                 "absolute inline-block right-3 text-gray-500 hover:text-gray-700",
                 textarea ? "top-4" : "top-1/2 -translate-y-1/2",
-                !onEndIconClick && "pointer-events-none"
+                !onEndIconClick && "pointer-events-none",
               )}
             >
               {endIcon}
@@ -165,7 +165,10 @@ export default memo(function AppInput({
               className={clsx(
                 "app-input",
                 { "ps-3": !icon, "ps-9": icon },
-                { "!bg-red-100": hasFieldError }
+                {
+                  "!bg-red-100 !text-slate-900 placeholder:!text-slate-500":
+                    hasFieldError,
+                },
               )}
             />
           ) : (
@@ -185,7 +188,10 @@ export default memo(function AppInput({
                 type === "password" && "pe-4",
                 !type.startsWith("password") && "pe-9",
                 inputProps.className,
-                { "!bg-red-100": hasFieldError }
+                {
+                  "!bg-red-100 !text-slate-900 placeholder:!text-slate-500":
+                    hasFieldError,
+                },
               )}
             />
           )}

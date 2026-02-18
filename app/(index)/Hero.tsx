@@ -7,6 +7,8 @@ import { gsap } from "gsap";
 import { useRef } from "react";
 import { LuSparkles } from "react-icons/lu";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { AvatarGroupCount } from "@/components/ui/avatarGroup";
+import { FaStar } from "react-icons/fa6";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -75,6 +77,19 @@ export default function Hero() {
           No more generic travel guides. Enjoy recommendations crafted from
           data, taste and your unique travel identity.
         </p>
+        <div className="flex gap-2 items-center">
+          <AvatarGroupCount />
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="text-yellow-500" />
+              ))}
+            </div>
+            <p className="text-sm text-slate-700 dark:text-slate-300">
+              2k+ travelers
+            </p>
+          </div>
+        </div>
         <div className="hero-form w-full">
           <HeroForm />
         </div>
