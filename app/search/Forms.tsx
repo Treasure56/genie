@@ -89,7 +89,7 @@ export default function Forms() {
         </div>
 
         <div className="w-full md:w-auto p-1">
-          <FormButton className="bg-brand-primary hover:bg-purple-900 text-white rounded-2xl w-full md:w-14 h-14 flex items-center justify-center shadow-md transition-all duration-300">
+          <FormButton className="bg-brand-primary hover:bg-purple-900 text-white rounded-xl w-full md:w-14 h-14 flex items-center justify-center shadow-md transition-all duration-300">
             <LuSearch className="text-xl" />
           </FormButton>
         </div>
@@ -102,25 +102,31 @@ const formFields: AppInputProps[] = [
   {
     name: "destination",
     placeholder: "Where to?",
-    icon: <LuMapPin className="text-brand-primary text-lg" />,
+    icon: (
+      <LuMapPin className="text-brand-primary dark:text-gray-300 text-lg" />
+    ),
   },
   {
     name: "travelDates",
     placeholder: "Dates",
     type: "date",
-    icon: <LuCalendar className="text-brand-primary text-lg" />,
+    icon: (
+      <LuCalendar className="text-brand-primary dark:text-gray-300 text-lg" />
+    ),
   },
   {
     name: "budget",
     placeholder: "Budget",
     type: "number",
-    icon: <LuWallet className="text-brand-primary text-lg" />,
+    icon: (
+      <LuWallet className="text-brand-primary dark:text-gray-300 text-lg" />
+    ),
   },
   {
     name: "tripDuration",
     placeholder: "Days",
     type: "number",
-    icon: <LuTimer className="text-brand-primary text-lg" />,
+    icon: <LuTimer className="text-brand-primary dark:text-gray-300 text-lg" />,
   },
 ];
 
