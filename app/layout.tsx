@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={` ${bricolageGrotesque.className} antialiased scroll-smooth bg-white dark:bg-slate-950`}
       >
         <NuqsAdapter>
@@ -39,7 +40,6 @@ export default function RootLayout({
             >
               <Navbar />
               {children}
-
               <SpeedInsights />
             </ThemeProvider>
           </Lenis>

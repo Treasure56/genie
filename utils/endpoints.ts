@@ -1,10 +1,12 @@
-export const API_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+// ── Endpoints ────────────────────────────────────────────────────────────────
 
-export const API_BASE_URL = "https://maps.googleapis.com/maps/api";
+// Google Maps Geocoding API (reverse geocoding lat/lng → address)
+export const GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
-export const endpoints = {
-  placesSearch: `${API_BASE_URL}/place/nearbysearch/json`,
-  textSearch: `${API_BASE_URL}/place/textsearch/json`,
-  // getCurrentLocation: `${API_BASE_URL}/geocode/json?latlng=${lat},${lng}&key=${apiKey}`,
-};
+// Google Maps Nearby Search API (find real places near a location)
+export const NEARBY_SEARCH_URL =
+  "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+
+// Google Maps Place Photo API base (append maxwidth + photoreference + key)
+export const PLACE_PHOTO_URL =
+  "https://maps.googleapis.com/maps/api/place/photo";
