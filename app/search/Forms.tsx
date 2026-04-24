@@ -162,7 +162,7 @@ export default function Forms({ defaultValues = {} }: FormsProps) {
 }
 
 const interestList = [
-  "Nature",
+  "Nature ",
   "History",
   "Culture",
   "Food",
